@@ -1,2 +1,39 @@
-# odoo-hackathon-2026
-Official repository for our team's submission to the Odoo Hackathon 2026. The project details and implementation will be updated after the problem statement is selected.
+# Odoo Hackathon 2026
+
+Welcome to our team's repository for the Odoo Hackathon 2026.
+
+This repository has been created before the hackathon begins. The project details, implementation, and documentation will be updated once the problem statement is announced and selected.
+
+## Team
+
+- Ankush Kumar Singh (Team Leader)
+- Team Member 2
+- Team Member 3
+- Team Member 4
+
+## Project Status
+
+🚧 Repository setup completed.
+
+The project development will begin after the official problem statement is released.
+
+## Tech Stack
+
+To be decided based on the selected problem statement.
+
+## Repository Structure
+
+```
+.
+├── README.md
+├── docs/
+├── frontend/
+├── backend/
+├── assets/
+└── .gitignore
+```
+
+## Notes
+
+- This repository is being maintained for the Odoo Hackathon 2026.
+- The README will be updated as the project progresses.

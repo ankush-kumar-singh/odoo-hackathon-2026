@@ -7,7 +7,7 @@ This repository has been created before the hackathon begins. The project detail
 ## Team
 
 - Ankush Kumar Singh (Team Leader)
-- Team Member 2
+- Amardeep Kumar Yadav
 - Team Member 3
 - Team Member 4
 

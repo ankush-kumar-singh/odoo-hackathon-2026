@@ -4,7 +4,7 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import dotenv from 'dotenv';
 import routes from './routes/index.js';
-import connectDatabase from './config/database.js';
+import connectDatabase, { gracefulShutdown } from './config/database.js';
 
 dotenv.config();
 
@@ -20,8 +20,23 @@ app.use('/api', routes);
 const startServer = async () => {
   await connectDatabase();
 
-  app.listen(port, () => {
+  const server = app.listen(port, () => {
     console.log(`TransitOps backend listening on port ${port}`);
+  });
+
+  const shutdown = async (signal) => {
+    console.log(`${signal} received. Stopping HTTP server...`);
+    server.close(async () => {
+      await gracefulShutdown(signal);
+    });
+  };
+
+  process.on('SIGINT', () => {
+    shutdown('SIGINT').catch(() => process.exit(1));
+  });
+
+  process.on('SIGTERM', () => {
+    shutdown('SIGTERM').catch(() => process.exit(1));
   });
 };
 

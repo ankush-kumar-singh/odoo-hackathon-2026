@@ -1,0 +1,77 @@
+# ==============================================================================
+# TransitOps Logistics Platform - Technical Requirements & Prerequisites
+# ==============================================================================
+
+# 1. RUNTIME ENGINE
+# ------------------------------------------------------------------------------
+Node.js: v18.0.0 or higher (Recommended: v20.x or v22.x LTS)
+npm: v9.0.0 or higher (or alternative package managers: yarn / pnpm)
+
+# 2. DATABASE ENVIRONMENT
+# ------------------------------------------------------------------------------
+MongoDB: v6.0 or higher
+- Can be a local MongoDB Community Server instance or a MongoDB Atlas Cloud Cluster.
+- Must support standard MongoDB Connection String Protocol (mongodb:// or mongodb+srv://).
+
+# 3. ENVIRONMENT VARIABLES (.env)
+# ------------------------------------------------------------------------------
+# Create a .env file in the root directory with the following variables:
+
+# MongoDB connection string
+MONGODB_URI=mongodb+srv://<username>:<password>@cluster0.ttlmuoo.mongodb.net/fleet_db?appName=Cluster0
+
+# Gemini AI Integration API Key (Optional / Required for AI Assistant features)
+GEMINI_API_KEY=your_gemini_api_key_here
+
+# The hosting URL of the application
+APP_URL=http://localhost:3000
+
+# 4. RUNTIME COMMANDS & SCRIPTS
+# ------------------------------------------------------------------------------
+# Install all required packages:
+#   npm install
+#
+# Run the development environment:
+#   npm run dev
+#
+# Build the application for production:
+#   npm run build
+#
+# Start the production application:
+#   npm run start
+
+# 5. CORE NODE DEPENDENCIES
+# ------------------------------------------------------------------------------
+# Express (Backend Framework)
+express>=4.21.2
+
+# Mongoose (MongoDB ODM)
+mongoose>=9.7.4
+
+# Google GenAI SDK (Smart Assistant & Route Insights)
+@google/genai>=2.4.0
+
+# React & React DOM (Frontend Library)
+react>=19.0.1
+react-dom>=19.0.1
+
+# Recharts (Interactive Dashboard Metrics & Analytics Charts)
+recharts>=3.9.2
+
+# Tailwind CSS (Utility-first styling system)
+tailwindcss>=4.1.14
+
+# Vite (High-speed frontend builder & dev server middleware)
+vite>=6.2.3
+
+# Motion (Polished UI micro-animations and smooth page transitions)
+motion>=12.23.24
+
+# Lucide React (Clean vector UI icons)
+lucide-react>=0.546.0
+
+# Tsx (Direct TypeScript execution utility for Node.js)
+tsx>=4.21.0
+
+# Esbuild (Bundles TypeScript backend servers safely for production)
+esbuild>=0.25.0

@@ -1,63 +1,17 @@
 # TransitOps
 
-TransitOps is an enterprise-grade smart fleet and transport management platform initialized as a scalable full-stack application foundation.
+TransitOps is an enterprise-grade smart fleet and transport operations platform designed for the Odoo Hackathon 2026. The repository now contains a cleaned architecture foundation for authentication, fleet operations, trip workflows, maintenance, fuel tracking, expense handling, and reporting.
 
-## Project Scope
+## Project Overview
 
-This repository currently contains only professional project initialization artifacts and architecture scaffolding. No application implementation, APIs, frontend pages, database schema, or Prisma models are included.
+TransitOps focuses on helping fleet operators manage vehicles, drivers, trips, maintenance, fuel usage, expenses, and operational reporting from a single scalable platform. The current repository is intentionally prepared for the next implementation phase rather than shipping business features.
 
-## Repository Structure
+## Team
 
-```text
-TransitOps/
-├── .github/
-│   └── workflows/
-├── frontend/
-│   ├── public/
-│   └── src/
-│       ├── assets/
-│       ├── components/
-│       ├── features/
-│       ├── hooks/
-│       ├── layouts/
-│       ├── pages/
-│       ├── routes/
-│       ├── services/
-│       ├── store/
-│       ├── styles/
-│       ├── utils/
-│       └── App.jsx
-├── backend/
-│   ├── src/
-│   │   ├── config/
-│   │   ├── middlewares/
-│   │   ├── modules/
-│   │   ├── routes/
-│   │   ├── services/
-│   │   ├── shared/
-│   │   ├── utils/
-│   │   ├── validations/
-│   │   └── server.js
-│   ├── prisma/
-│   └── package.json
-├── database/
-│   ├── prisma/
-│   ├── migrations/
-│   ├── seed/
-│   ├── schema/
-│   └── scripts/
-├── datasets/
-├── docs/
-│   ├── architecture/
-│   ├── database/
-│   ├── api/
-│   ├── deployment/
-│   └── reports/
-├── scripts/
-├── tests/
-├── README.md
-└── .gitignore
-```
+- Ankush Kumar Singh
+- Amardeep Kumar Yadav
+- Md Jasim Ansari
+- Md Nasim Ansari
 
 ## Tech Stack
 
@@ -71,136 +25,114 @@ TransitOps/
 ### Backend
 - Node.js
 - Express.js
-
-### Data & Auth
-- PostgreSQL
-- Prisma
+- MongoDB
+- Mongoose
 - JWT
 - bcrypt
 - Zod
 - dotenv
 
-### Package Manager
+### Tooling
 - npm
+- ESLint
+- Jest
+- Vitest
 
-## Initial Folder Responsibilities
+## Features in Scope
 
-### frontend/
-- Holds the React application shell, routing, UI features, shared components, and client-side state organization.
-- Uses feature-based organization for scalability.
+- Authentication and RBAC-ready structure
+- Dashboard module foundation
+- Vehicle registry foundation
+- Driver management foundation
+- Trip management foundation
+- Maintenance tracking foundation
+- Fuel management foundation
+- Expense management foundation
+- Reports and analytics foundation
 
-### backend/
-- Hosts server configuration, application bootstrap, feature modules, shared services, middleware, and validation.
-- Keeps business logic isolated by domain and feature.
+## Repository Structure
 
-### database/
-- Prepared for migrations, seed scripts, and database-related operational artifacts.
+```text
+TransitOps/
+├── .github/workflows/
+├── frontend/
+│   ├── public/
+│   └── src/
+│       ├── assets/
+│       ├── components/
+│       ├── constants
+│       ├── hooks
+│       ├── layouts
+│       ├── pages
+│       ├── routes
+│       ├── services
+│       ├── store
+│       ├── styles
+│       ├── utils
+│       └── App.jsx
+├── backend/
+│   └── src/
+│       ├── config
+│       ├── controllers
+│       ├── middleware
+│       ├── models
+│       ├── routes
+│       ├── services
+│       ├── utils
+│       └── validations
+├── database/
+├── datasets/
+├── docs/
+├── scripts/
+├── tests/
+├── README.md
+└── .gitignore
+```
 
-### docs/
-- Stores architecture decisions, workflow guidance, standards, and onboarding documentation.
+## Installation
 
-### datasets/
-- Intended for raw ingestion files and reference data during project execution.
+1. Clone the repository.
+2. Install frontend dependencies:
+   - npm install --prefix frontend
+3. Install backend dependencies:
+   - npm install --prefix backend
 
-### scripts/
-- Reserved for automation scripts, environment bootstrapping, and maintenance tasks.
-
-### tests/
-- Reserved for automated tests and future end-to-end test coverage.
-
-## Recommended Dependency Set
+## Environment Variables
 
 ### Frontend
-- react
-- react-dom
-- react-router-dom
-- axios
-- tailwindcss
-- postcss
-- autoprefixer
-- vite
-- @vitejs/plugin-react
-- vitest
-- eslint
-- eslint-plugin-react
-- eslint-plugin-react-hooks
+- Create a copy of frontend/.env.example and adjust values as needed.
 
 ### Backend
-- express
-- cors
-- helmet
-- morgan
-- dotenv
-- jsonwebtoken
-- bcrypt
-- zod
-- prisma
-- pg
-- axios
-- nodemon
-- jest
-- supertest
+- Create a copy of backend/.env.example and set:
+  - PORT
+  - NODE_ENV
+  - MONGO_URI
+  - JWT_SECRET
+  - JWT_EXPIRES_IN
+  - BCRYPT_SALT_ROUNDS
+  - CORS_ORIGIN
 
-## Development Scripts
+## Running Locally
 
 ### Frontend
-- npm run dev
-- npm run build
-- npm run preview
-- npm run lint
-- npm run test
+- npm run dev --prefix frontend
 
 ### Backend
-- npm run dev
-- npm run start
-- npm run lint
-- npm run test
+- npm run dev --prefix backend
 
-## Environment Templates
+## Future Improvements
 
-- Frontend: frontend/.env.example
-- Backend: backend/.env.example
-
-## Project Workflow
-
-1. Create feature branches from main.
-2. Keep changes scoped to a single domain or concern.
-3. Document architectural decisions in docs/architecture.
-4. Validate code quality before merging.
-5. Use pull requests for review and integration.
+- Build complete authentication and authorization flows
+- Implement CRUD for fleet and operations modules
+- Connect the application to MongoDB Atlas or a local MongoDB instance
+- Add analytics dashboards and reporting exports
+- Add automated tests and deployment automation
 
 ## Coding Standards
 
-- Use clear, descriptive names.
-- Keep modules focused and modular.
-- Prefer dependency injection and service boundaries.
-- Write readable, maintainable code.
-- Add comments only when they improve clarity.
-- Keep configuration externalized.
-
-## Naming Conventions
-
-- Use camelCase for variables and functions.
-- Use PascalCase for React components and classes.
-- Use kebab-case for file and folder names.
-- Use UPPER_SNAKE_CASE for environment variables.
-- Use feature-based folder names where domain context is clear.
-
-## Git Branching Strategy
-
-- main: production-ready baseline
-- develop: integration branch for next release
-- feature/*: new features and enhancements
-- bugfix/*: defect fixes
-- hotfix/*: urgent production corrections
-- chore/*: maintenance and internal tooling
-
-## Current Deliverables
-
-- Standardized enterprise project structure
-- Database design specification blueprint in docs/database/Database_Design_Specification.md
-- Architecture and documentation foundation for future implementation
-
-## Next Step
-
-The repository is now prepared for database implementation planning and subsequent schema generation work.
+- Keep controllers thin and delegate to services.
+- Keep business logic in services.
+- Keep validation logic in the validation layer.
+- Keep routes focused on routing.
+- Use descriptive naming and consistent folder structure.
+- Prefer reusable components and utilities.

@@ -1,5 +1,6 @@
 import { VehicleType } from '../../../backend/src/models/index.js';
 
+// Vehicle types are lookup documents reused by every vehicle record.
 export const seedVehicleTypes = async () => {
   const types = [
     { name: 'BUS', description: 'Urban transport bus' },
@@ -23,7 +24,7 @@ export const seedVehicleTypes = async () => {
   );
 
   return {
-    count: created.upsertedCount + created.modifiedCount,
+    count: await VehicleType.countDocuments({}),
     inserted: created.upsertedCount,
   };
 };

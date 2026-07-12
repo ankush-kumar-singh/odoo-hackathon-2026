@@ -1,6 +1,7 @@
 import { faker } from '@faker-js/faker';
 import { FuelLog, Trip, User } from '../../../backend/src/models/index.js';
 
+// Fuel logs are seeded after trips because each log references an existing trip.
 export const seedFuelLogs = async () => {
   faker.seed(2026);
   const trips = await Trip.find({}).lean();
@@ -32,7 +33,7 @@ export const seedFuelLogs = async () => {
   );
 
   return {
-    count: created.upsertedCount + created.modifiedCount,
+    count: await FuelLog.countDocuments({}),
     inserted: created.upsertedCount,
   };
 };

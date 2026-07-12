@@ -1,6 +1,7 @@
 import { faker } from '@faker-js/faker';
 import { MaintenanceLog, Vehicle, User } from '../../../backend/src/models/index.js';
 
+// Maintenance logs are seeded after vehicles because each log belongs to a specific vehicle.
 export const seedMaintenanceLogs = async () => {
   faker.seed(2026);
   const vehicles = await Vehicle.find({}).lean();
@@ -32,7 +33,7 @@ export const seedMaintenanceLogs = async () => {
   );
 
   return {
-    count: created.upsertedCount + created.modifiedCount,
+    count: await MaintenanceLog.countDocuments({}),
     inserted: created.upsertedCount,
   };
 };

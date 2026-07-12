@@ -1,5 +1,6 @@
 import { Role } from '../../../backend/src/models/index.js';
 
+// Roles are the shared lookup documents that all users depend on.
 export const seedRoles = async () => {
   const roles = [
     { name: 'admin', permissions: ['manage_users', 'manage_fleet', 'manage_trips', 'manage_maintenance', 'manage_finance', 'view_reports'], description: 'System administrator' },
@@ -20,7 +21,7 @@ export const seedRoles = async () => {
   );
 
   return {
-    count: created.upsertedCount + created.modifiedCount,
+    count: await Role.countDocuments({}),
     inserted: created.upsertedCount,
   };
 };

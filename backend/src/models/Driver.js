@@ -75,7 +75,6 @@ const driverSchema = new mongoose.Schema(
 );
 
 // Helpful for dispatch and license-based assignment checks.
-driverSchema.index({ licenseNumber: 1 });
 driverSchema.index({ status: 1, isActive: 1 });
 driverSchema.index({ licenseExpiryDate: 1, isActive: 1 });
 

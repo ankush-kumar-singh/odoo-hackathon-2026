@@ -23,6 +23,7 @@ const modelMap = {
   AUTO: ['RE', 'Ape'],
 };
 
+// Vehicles are seeded before trips so each trip can reference a valid vehicle.
 export const seedVehicles = async () => {
   faker.seed(2026);
   const vehicleTypes = await VehicleType.find({}).lean();
@@ -56,7 +57,7 @@ export const seedVehicles = async () => {
   );
 
   return {
-    count: created.upsertedCount + created.modifiedCount,
+    count: await Vehicle.countDocuments({}),
     inserted: created.upsertedCount,
   };
 };

@@ -72,7 +72,6 @@ const vehicleSchema = new mongoose.Schema(
 );
 
 // Used by dispatch and fleet assignment workflows.
-vehicleSchema.index({ registrationNumber: 1 });
 vehicleSchema.index({ status: 1, isActive: 1 });
 vehicleSchema.index({ vehicleTypeId: 1, status: 1 });
 

@@ -1,6 +1,7 @@
 import dotenv from 'dotenv';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import mongoose from 'mongoose';
 import connectDatabase from '../../backend/src/config/database.js';
 import { seedRoles } from './modules/seedRoles.js';
 import { seedVehicleTypes } from './modules/seedVehicleTypes.js';
@@ -32,27 +33,27 @@ const collections = [
   { name: 'notifications', model: Notification },
 ];
 
+const steps = [
+  ['roles', seedRoles],
+  ['vehicle_types', seedVehicleTypes],
+  ['users', seedUsers],
+  ['vehicles', seedVehicles],
+  ['drivers', seedDrivers],
+  ['trips', seedTrips],
+  ['fuel_logs', seedFuelLogs],
+  ['maintenance_logs', seedMaintenanceLogs],
+  ['expenses', seedExpenses],
+  ['notifications', seedNotifications],
+];
+
 const seedDatabase = async () => {
   console.log('Connecting to MongoDB...');
   await connectDatabase();
 
-  console.log('Clearing existing seed collections...');
+  console.log('Clearing old seed collections to keep the database consistent...');
   for (const collection of collections) {
     await collection.model.deleteMany({});
   }
-
-  const steps = [
-    ['roles', seedRoles],
-    ['vehicle_types', seedVehicleTypes],
-    ['users', seedUsers],
-    ['vehicles', seedVehicles],
-    ['drivers', seedDrivers],
-    ['trips', seedTrips],
-    ['fuel_logs', seedFuelLogs],
-    ['maintenance_logs', seedMaintenanceLogs],
-    ['expenses', seedExpenses],
-    ['notifications', seedNotifications],
-  ];
 
   const results = [];
   for (const [name, operation] of steps) {
@@ -67,6 +68,9 @@ const seedDatabase = async () => {
     console.log(`- ${result.name}: ${result.inserted} inserted / ${result.count} total`);
   }
   console.log(JSON.stringify(validationReport, null, 2));
+
+  await mongoose.disconnect();
+  console.log('Database connection closed.');
 };
 
 const validateSeedData = async () => {

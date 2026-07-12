@@ -1,6 +1,7 @@
 import { faker } from '@faker-js/faker';
 import { Driver, User } from '../../../backend/src/models/index.js';
 
+// Drivers are seeded before trips so each trip can reference a valid driver.
 export const seedDrivers = async () => {
   faker.seed(2026);
   const users = await User.find({}).lean();
@@ -28,7 +29,7 @@ export const seedDrivers = async () => {
   );
 
   return {
-    count: created.upsertedCount + created.modifiedCount,
+    count: await Driver.countDocuments({}),
     inserted: created.upsertedCount,
   };
 };

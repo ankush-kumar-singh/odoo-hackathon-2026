@@ -1,6 +1,7 @@
 import { faker } from '@faker-js/faker';
 import { Notification, User, Trip } from '../../../backend/src/models/index.js';
 
+// Notifications are seeded last because they can reference users and trips already created earlier.
 export const seedNotifications = async () => {
   faker.seed(2026);
   const users = await User.find({}).lean();
@@ -27,7 +28,7 @@ export const seedNotifications = async () => {
   );
 
   return {
-    count: created.upsertedCount + created.modifiedCount,
+    count: await Notification.countDocuments({}),
     inserted: created.upsertedCount,
   };
 };

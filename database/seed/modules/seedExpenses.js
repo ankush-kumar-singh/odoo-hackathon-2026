@@ -1,6 +1,7 @@
 import { faker } from '@faker-js/faker';
 import { Expense, Vehicle, Trip, User } from '../../../backend/src/models/index.js';
 
+// Expenses are seeded after vehicles and trips because they can be linked to both.
 export const seedExpenses = async () => {
   faker.seed(2026);
   const vehicles = await Vehicle.find({}).lean();
@@ -34,7 +35,7 @@ export const seedExpenses = async () => {
   );
 
   return {
-    count: created.upsertedCount + created.modifiedCount,
+    count: await Expense.countDocuments({}),
     inserted: created.upsertedCount,
   };
 };

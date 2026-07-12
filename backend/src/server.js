@@ -4,6 +4,7 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import dotenv from 'dotenv';
 import routes from './routes/index.js';
+import connectDatabase from './config/database.js';
 
 dotenv.config();
 
@@ -16,8 +17,17 @@ app.use(morgan('dev'));
 app.use(express.json());
 app.use('/api', routes);
 
-app.listen(port, () => {
-  console.log(`TransitOps backend listening on port ${port}`);
+const startServer = async () => {
+  await connectDatabase();
+
+  app.listen(port, () => {
+    console.log(`TransitOps backend listening on port ${port}`);
+  });
+};
+
+startServer().catch((error) => {
+  console.error('Failed to start TransitOps backend:', error);
+  process.exit(1);
 });
 
 export default app;
